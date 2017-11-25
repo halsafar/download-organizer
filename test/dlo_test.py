@@ -24,7 +24,7 @@ class TestDownloadOrganizer:
         options = MagicMock()
         options.dry_run = False
 
-        config_file = './test/config.py'
+        config_file = './config.py'
 
         dlo = DownloadOrganizer(options, config_file)
         dlo.scan()

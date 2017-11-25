@@ -1,2 +1,2 @@
 #!/bin/bash
-python `which nosetests` --nocapture --verbosity 2 --nologcapture
+python `which nosetests` --nocapture --verbosity 2 --nologcapture -w test/
