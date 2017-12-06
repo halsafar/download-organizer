@@ -87,6 +87,9 @@ class DownloadOrganizer(object):
 
                         matches = self._findMatches(file_path)
                         logging.debug("Matches: %s" % matches)
+                        if not matches:
+                            ignored.append(filename)
+                            continue
                         if len(matches) > 1:
                             logging.error("Multiple destinations found for %s" % filename)
                             ignored.append(filename)
