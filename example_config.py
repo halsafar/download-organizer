@@ -1,14 +1,14 @@
-from src.base_config import DownloadOrganizerBaseConfig, DownloadRegex, Destination
+from base_config import DownloadOrganizerBaseConfig, DownloadRegex, Destination
 
 
 class DownloadOrganizerConfig(DownloadOrganizerBaseConfig):
     # Directories to search
     SEARCH_DIRS = [
-        './fake_downloads'
+        './test/fake_downloads'
     ]
 
     # Valid Extensions
-    EXTENSIONS = ['.mkv']
+    EXTENSIONS = ['.mkv', '.srt']
 
     # Regex list
     REGEX_LIST = [

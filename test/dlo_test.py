@@ -22,9 +22,10 @@ class TestDownloadOrganizer:
 
     def testDlo(self):
         options = MagicMock()
-        options.dry_run = False
+        options.dry_run = True
 
         config_file = './config.py'
 
         dlo = DownloadOrganizer(options, config_file)
-        dlo.scan()
+        workloads = dlo.scan()
+        dlo.process(workloads)
