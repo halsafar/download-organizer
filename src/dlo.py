@@ -192,6 +192,10 @@ def parseArgs():
                         help='Config File to use',
                         type=argparse.FileType('r')
                         )
+    parser.add_argument("-v", "--verbose",
+                        help="Increase output verbosity",
+                        action="store_true")
+
     options = parser.parse_args()
 
     return options
@@ -203,7 +207,7 @@ def main():
     :return:
     """
     # setup logger
-    logging.basicConfig(format='%(levelname)s:%(asctime)s:\t%(message)s', level=logging.DEBUG)
+    logging.basicConfig(format='%(levelname)s:%(asctime)s:\t%(message)s', level=logging.INFO)
 
     # Create the lock file
     lock = LockFile(LOCK_FILE_PATH)
@@ -214,13 +218,16 @@ def main():
             try:
                 lock.acquire(timeout=5)
             except LockTimeout:
-                logging.info("Could not acquire lock file...")
+                print "Could not acquire lock file..."
                 return -1
 
         options = parseArgs()
         if not options.config:
             print "No config file specified"
             return
+
+        if options.verbose:
+            logging.getLogger().setLevel(logging.DEBUG)
 
         dlo = DownloadOrganizer(options, options.config.name)
         workkloads = dlo.scan()
